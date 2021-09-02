@@ -1,0 +1,96 @@
+<!doctype html>
+<html  lang={{lang}}>
+<head>   
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css"integrity="sha384-Uu6IeWbM+gzNVXJcM9XV3SohHtmWE+3VGi496jvgX1jyvDTXfdK+rfZc8C1Aehk5" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css')}}" />
+    
+    <title>Summarizer</title>
+    
+    
+</head>
+<body>
+
+<div class="header">
+    <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+        <a class="pure-menu-heading" href="">Summarizer</a>
+
+        <ul class="pure-menu-list">
+            <li style="color: aliceblue;"><a href="/"  class="pure-menu-link"> Reset </a></li>
+        
+        </ul>
+    </div>
+</div>
+
+<div class="splash-container ">
+    <div class="splash">
+        <h1 class="splash-head" >Text summarization </h1> 
+        <p class="splash-subhead">
+            {% if lang %}
+              
+            language : {{ lang }}
+
+            {% endif %}    
+        
+        </p>
+        <p class="rtl"> 
+            
+            <form action="/French">
+                <input type="submit"  class="button1"   value="French"> 
+            </form>
+
+            <form action="/English">
+                <input type="submit"  class="button1"   value="English">   
+            </form>
+
+            <form action="/Arabic">
+                <input type="submit"  class="button1"   value="Arabic">
+            </form>
+        </p>>
+        
+    </div>
+</div>
+
+<div class="content-wrapper  {{dir}}">
+    <div class="content ">
+       
+        <h1 class="centered"> {{input}}</h1>
+	    <div class="form-container jumbotron centered " id="sum-section">
+        
+		<form method="POST" action="/{{lang}}">
+            
+        <textarea class="centered " maxlength = "50000" name = "text" id = "text" style="width:800px; 
+				height:250px"  >{{ text_input }}</textarea><br>
+		</div>
+		<p class="centered">
+
+					{{num}} : <input type="number" name = "num_sentences" pattern = 
+					"[0-9]+" min = "1" max = "100" required > 
+			<button> {{button}}</button> <br>	
+                </p>
+        
+			
+		<h2 class="centered">{{output}} </h2>
+        <div class="centered">
+		<texarea maxlength = "50000" name="output_text" id="output_text"  style="width:800px; 
+				 min-height:250px">
+
+					
+					{{ summary }} 
+					
+					
+		</textarea>
+        </div>
+        </form>
+        
+        
+    </div>
+
+
+</div>
+
+</body>
+</html>
